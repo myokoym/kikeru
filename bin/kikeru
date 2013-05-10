@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "kikeru/command"
+
+Kikeru::Command.run(*ARGV)
