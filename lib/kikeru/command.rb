@@ -38,8 +38,7 @@ module Kikeru
       window = Kikeru::Window.new
       window.add_container(file_container)
       window.show_all
-      window.play
-
+      window.load
 
       Gtk.main
     end

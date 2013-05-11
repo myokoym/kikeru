@@ -13,11 +13,11 @@ module Kikeru
       @file = @container.shift
     end
 
-    def play
-      @playbin.stop
+    def load
+      stop
       @playbin.uri = Gst.filename_to_uri(@file)
       self.title = File.basename(@file)
-      @playbin.play
+      play
     end
 
     private
@@ -28,7 +28,7 @@ module Kikeru
 
     def setup_window
       signal_connect("destroy") do
-        @playbin.stop
+        stop
         Gtk.main_quit
       end
 
@@ -36,15 +36,17 @@ module Kikeru
         case event.keyval
         when Gdk::Keyval::GDK_KEY_n
           @file = @container.shift(@file)
-          play
+          load
         when Gdk::Keyval::GDK_KEY_p
           @file = @container.pop(@file)
-          play
+          load
         when Gdk::Keyval::GDK_KEY_r
-          play
+          load
         when Gdk::Keyval::GDK_KEY_q
-          @playbin.stop
+          stop
           Gtk.main_quit
+        when Gdk::Keyval::GDK_KEY_space
+          toggle
         end
       end
     end
@@ -62,10 +64,29 @@ module Kikeru
         case message.type
         when Gst::MessageType::EOS
           @file = @container.shift(@file)
-          play
+          load
         end
         true
       end
+    end
+
+    def play
+      @playbin.play
+      @playing = true
+    end
+
+    def pause
+      @playbin.pause
+      @playing = false
+    end
+
+    def stop
+      @playbin.stop
+      @playing = false
+    end
+
+    def toggle
+      @playing ? pause : play
     end
   end
 end
