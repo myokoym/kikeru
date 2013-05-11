@@ -57,6 +57,15 @@ module Kikeru
         puts "'playbin' gstreamer plugin missing"
         exit(false)
       end
+
+      @playbin.bus.add_watch do |bus, message|
+        case message.type
+        when Gst::MessageType::EOS
+          @file = @container.shift(@file)
+          play
+        end
+        true
+      end
     end
   end
 end
