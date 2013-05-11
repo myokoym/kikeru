@@ -25,6 +25,7 @@ If no argument, then search current directory.
     p: prev
     r: restart
     q: quit
+    space: pause/play
 
 ## Contributing
 

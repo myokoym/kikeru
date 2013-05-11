@@ -96,6 +96,7 @@ Keybind:
   p: prev
   r: restart
   q: quit
+  space: pause/play
       EOM
       @logger.info(message)
     end
