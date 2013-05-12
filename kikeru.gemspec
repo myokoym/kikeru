@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Masafumi Yokoyama"]
   spec.email         = ["myokoym@gmail.com"]
   spec.summary       = %q{Keyboard Friendly Audio Player}
-  spec.description   = %q{Kikeru is a keyboard friendly audio player by Ruby/GStreamer.}
+  spec.description   = %q{A keyboard friendly audio player by Ruby/GStreamer.}
   spec.homepage      = "https://github.com/myokoym/kikeru"
   spec.license       = "MIT"
 
